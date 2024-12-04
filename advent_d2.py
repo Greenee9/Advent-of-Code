@@ -15,7 +15,13 @@ safe = 0
 for i in range(len(Data)):
     pos = 0
     neg = 0
-    if  sorted(Data[i]) != Data[i] and sorted(Data[i]) != Data[i][::-1]:
+    ROW = np.array(Data[i])
+    Dpos = sorted(ROW) - ROW
+    Dneg = sorted(ROW) - ROW[::-1]
+    errpos = [k for k in Dpos if k != 0]
+    errneg = [k for k in Dneg if k != 0]
+    print(errpos)
+    if len(errpos) >= 2 or len(errneg) >= 2:
         continue
     for j in range(len(Data[i])-1):
         diff = Data[i][j] - Data[i][j+1]
