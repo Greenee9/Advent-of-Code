@@ -10,4 +10,22 @@ for i in range(1000):
     for j in range(len(X)):
         intermed.append(int(X[j]))
     Data.append(intermed)
-print(Data)
+
+safe = 0
+for i in range(len(Data)):
+    pos = 0
+    neg = 0
+    if  sorted(Data[i]) != Data[i] and sorted(Data[i]) != Data[i][::-1]:
+        continue
+    for j in range(len(Data[i])-1):
+        diff = Data[i][j] - Data[i][j+1]
+        if diff in [1,2,3]:
+            pos += 1
+        if diff in [-1,-2,-3]:
+            neg += 1
+    if  len(Data[i])-1 == pos or len(Data[i])-1 == neg:
+        safe += 1
+
+print(safe)
+
+#(pos >= 1 and neg == 0) or (pos == 0 and neg >= 1) 
